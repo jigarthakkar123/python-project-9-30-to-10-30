@@ -1,0 +1,77 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- ****** Checkout Area Start ****** -->
+        <div class="checkout_area section_padding_10">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-md-12">
+                        <div class="checkout_details_area mt-50 clearfix">
+
+                            <div class="cart-page-heading">
+                                <h5>Add Product</h5>
+                            </div>
+                            {% if msg %}
+                                <b style="color: red;">{{msg}}</b>
+                            {% endif %}
+                            <form action="{% url 'seller-add-product' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label for="company">Product Category</label>
+                                        <select class="form-control" id="company" name="product_category">
+                                            <option>---Select Product Category---</option>
+                                            <option value="Men">Men</option>
+                                            <option value="Women">Women</option>
+                                            <option value="Kids">Kids</option>
+                                            <option value="Accessories">Accessories</option>
+                                            <option value="Shoes">Shoes</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label for="first_name">Product Name <span>*</span></label>
+                                        <input type="text" class="form-control" id="first_name" required name="product_name">
+                                    </div>
+                                    
+                                    <div class="col-12 mb-3">
+                                        <label for="company">Product Price</label>
+                                        <input type="text" class="form-control" id="company" name="product_price">
+                                    </div>
+                                    
+                                    <div class="col-12 mb-3">
+                                        <label for="street_address">Product Details <span>*</span></label>
+                                        <input type="text" class="form-control mb-3" id="street_address" name="product_desc">
+                                    </div>
+                                    
+                                    
+                                    <div class="col-12 mb-3">
+                                        <label for="street_address">Product Image <span>*</span></label>
+                                        <input type="file" class="form-control mb-3" id="street_address" name="product_image">
+                                    </div>
+                                    
+                                    <div class="col-12 mb-3">
+                                        
+                                        <input type="submit" class="btn btn-primary" id="street_address" value="Add Product">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ****** Checkout Area End ****** -->
+</body>
+
+</html>
+{% endblock %}

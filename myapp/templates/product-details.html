@@ -1,0 +1,83 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <div id="wrapper">
+        
+
+        <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+        <section class="single_product_details_area section_padding_0_100">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-md-6">
+                        <div class="single_product_thumb">
+                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a class="gallery_img" href="{{product.product_image.url}}">
+                                        <img class="d-block w-100" src="{{product.product_image.url}}" alt="First slide">
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="single_product_desc">
+
+                            <h4 class="title"><a href="#">{{product.product_name}}</a></h4>
+
+                            <h4 class="price">{{product.product_price}}</h4>
+
+                            <form class="cart clearfix mb-50 d-flex" method="post">
+                                {% if request.session.email %}
+                                    {% if cart_flag == False %}
+                                        <a href="{% url 'add-to-cart' pk=product.pk %}"><button type="button" name="addtocart" value="5" class="btn btn-primary">Add to cart</button></a>
+                                    {% else %}
+                                        <a href="{% url 'remove-from-cart' pk=product.pk %}"><button type="button" name="addtocart" value="5" class="btn btn-danger">Remove From cart</button></a>
+                                    {% endif %}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {% if wishlist_flag == False %}
+                                        <a href="{% url 'add-to-wishlist' pk=product.pk %}"><button type="button" name="addtocart" value="5" class="btn btn-primary">Add to wishlist</button></a>
+                                    {% else %}
+                                        <a href="{% url 'remove-from-wishlist' pk=product.pk %}"><button type="button" name="addtocart" value="5" class="btn btn-danger">Remove From wishlist</button></a>
+                                    {% endif %}
+                                {% else %}
+                                <a href="{% url 'login' %}"><button type="button" name="addtocart" value="5" class="btn cart-submit d-block">Login</button></a>
+                                {% endif %}
+                            </form>
+
+                            <div id="accordion" role="tablist">
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingOne">
+                                        <h6 class="mb-0">
+                                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Information</a>
+                                        </h6>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <p>{{product.product_desc}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area End >>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+</body>
+
+</html>
+{% endblock %}

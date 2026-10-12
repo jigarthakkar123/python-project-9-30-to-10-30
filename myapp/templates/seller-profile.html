@@ -1,0 +1,75 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- ****** Checkout Area Start ****** -->
+        <div class="checkout_area section_padding_10">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-12 col-md-12">
+                        <div class="checkout_details_area mt-50 clearfix">
+
+                            <div class="cart-page-heading">
+                                <h5>User Profile</h5>
+                            </div>
+                            {% if msg %}
+                                <b style="color: red;">{{msg}}</b>
+                            {% endif %}
+                            <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="first_name">First Name <span>*</span></label>
+                                        <input type="text" class="form-control" id="first_name" name="fname" value="{{user.fname}}">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="last_name">Last Name <span>*</span></label>
+                                        <input type="text" class="form-control" id="last_name" name="lname"  value="{{user.lname}}">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="company">email</label>
+                                        <input type="text" class="form-control" id="company" name="email"  value="{{user.email}}" readonly>
+                                    </div>
+                                    
+                                    <div class="col-12 mb-3">
+                                        <label for="street_address">Address <span>*</span></label>
+                                        <input type="text" class="form-control mb-3" id="street_address" name="address" value="{{user.address}}">
+                                    </div>
+                                    
+                                    <div class="col-12 mb-3">
+                                        <label for="phone_number">Mobile <span>*</span></label>
+                                        <input type="number" class="form-control" id="phone_number" min="0" name="mobile" value="{{user.mobile}}">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <img src="{{user.profile_picture.url}}" style="width: 150px;height: 150px;border-radius: 50%;">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label for="street_address">Profile Picture <span>*</span></label>
+                                        <input type="file" class="form-control mb-3" id="street_address" name="profile_picture">
+                                    </div>
+                                    
+                                    <div class="col-12 mb-3">
+                                        
+                                        <input type="submit" class="btn btn-primary" id="street_address" value="Update Profile">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- ****** Checkout Area End ****** -->
+</body>
+
+</html>
+{% endblock %}
